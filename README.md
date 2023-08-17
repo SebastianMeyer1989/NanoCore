@@ -12,7 +12,8 @@ The results of our experiments so far are highly concordant to the results of Se
 
 To apply NanoCore, Nanopore data (or Nanopore or Illumina data) for either Sample you want to analyse, is needed.
 
-A preprint with accuracy evaluations can be fount at: ???? (WIP)
+The publication accompanying this tool can be found at: [WIP]
+The datasets analysed in this publication can be found in the Sequence Read Archive (SRA): [WIP]
 
 ### Overview of the NanoCore pipeline
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/NanoCore_workflow.png)
@@ -32,7 +33,7 @@ The programm was tested on the following Operating Systems:
 - Perl Modules:
   - Getopt::Long
  
-Then the NanoCore environment can be created using the following command: (WIP)
+Then the NanoCore environment can be created using the following command:
 ```
 conda env create -f NanoCore_dependencies.yml
 ```
@@ -42,6 +43,7 @@ And activated usind the following command:
 conda activate NanoCore
 ```
 
+Additionally, we are currently working on creating a bioconda package for NanoCore.
 
 ## Running NanoCore
 The tool has no user-interface and is run from the terminal.
