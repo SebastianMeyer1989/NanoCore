@@ -83,7 +83,7 @@ sample404    Illumina  /Illumina_Data/sample404_R1.fastq  Illumina_Data/sample40
 
 (examplary for prefix `NanoCore_Run_1`):
 
-Of Primary interest for the user should be the allele table "NanoCore_Run_1_allele_table.txt" in the "Output_NanoCore_Run_1_Tables/" folder, that shows the pairwise distances calculated on a cgMLST-like metric and the minimum-spanning-tree "NanoCore_Run_1-mst.pdf" in the "Output_NanoCore_Run_1_Stats/" folder, that shows the from the allele table calculated tree with all samples of this run.
+Of Primary interest for the user should be the allele table "NanoCore_Run_1_allele_table.txt" in the "Output_NanoCore_Run_1_Tables/" folder, that shows the pairwise distances calculated on a cgMLST-like metric and the minimum-spanning-tree "NanoCore_Run_1-mst.pdf" in the "Output_NanoCore_Run_1_Stats/" folder, that shows the tree with all samples of this run calculated from the allele table.
 Of secondary interest are probably the other pdf-files found in the "Output_NanoCore_Run_1_Stats/" folder, that show different statistics of the run as well as heatmaps of excluded genes.
 Nevertheless, for completeness here we list everything NanoCore produces:
 
