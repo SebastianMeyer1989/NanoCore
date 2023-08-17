@@ -17,7 +17,7 @@ A preprint with accuracy evaluations can be fount at: ???? (WIP)
 ### Overview of the NanoCore pipeline
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/NanoCore_workflow.png)
 
-Overview of the NanoCore method (right), in comparison to a well-established method for the computation of cgMLST-based distances (SeqSphere+ (41), left). NanoCore maps the provided sequencing data to the corresponding core genome, calls variants from those mappings, applies various filters to the results and produces different statistics, a distance matrix and a minimum-spanning-tree.
+The NanoCore method (right), in comparison to a well-established method for the computation of cgMLST-based distances (SeqSphere+ (41), left). NanoCore maps the provided sequencing data to the corresponding core genome, calls variants from those mappings, applies various filters to the results and produces different statistics, a distance matrix and a minimum-spanning-tree.
 
 ## Program Requirements and Installation
 The programm was tested on the following Operating Systems:
