@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 #
-# run example:  /usr/bin/time -v perl variant_comparison_script_v16.pl --sample_list sample_list_VRE_v2.txt --reference E.faecium_cgMLST_ref-seqs.fasta --clair_model_nano /home/semey101/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/semey101/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix Complete_Test_14_default_parameters
-#				[TIME-OF-YOUR-RUN]	  [SCRIPT]						   [SAMPLE-FILE]						[cgMLST]                       				[PATH-TO-CLAIR-MODEL-FILE]							   							[PATH-TO-CLAIR-MODEL-FILE]															[MIN_COVERAGE]	[THREADS]	[SAMTOOLS PATH]		[PREFIX] 									
+# run example:   NanoCore.pl --sample_list sample_list.txt --reference S.aureus_cgMLST_ref-seqs.fasta --clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix NanoCore_Run_1
 #
 
 use Getopt::Long;
