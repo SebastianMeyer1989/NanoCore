@@ -3,12 +3,12 @@
 
 ## Introduction
 
-NanoCore is a user-friendly tool developed specifically for the analysis of putative bacterial outbreaks with Nanopore sequencing on basis of a species specific core genome;
-NanoCore is based on a mapping and variant calling approach, followed by multi-level filtering to account for sequencing and variant calling errors and variation in genome structure; It implements a cgMLST-like distance metric and also supports the integration of Illumina- and Nanopore-sequenced isolates in the same analysis. 
+NanoCore is a user-friendly tool developed specifically for the analysis of putative bacterial outbreaks with Nanopore sequencing data on basis of a species specific core genome.
+NanoCore is based on a mapping and variant calling approach, followed by multi-level filtering to account for sequencing and variant calling errors and variation in genome structure. It implements a cgMLST-like distance metric and also supports the integration of Illumina- and Nanopore-sequenced isolates in the same analysis. 
 
 Key advantages of this tool are reduced turnaround times and lower capital requirements, due to the use of Oxford Nanopore sequencing data in comparison gold standard methods which are mostly Illumina-based. In the context of hospital pathogen surveillance, these may translate into e.g. reduced outbreak investigation times or the ability to implement genomic surveillance in resource-limited settings.
 
-The results of our experiments so far are highly concordant to the results of SeqSphere+, a “gold standard” software for the analysis of bacterial outbreaks in the hospital context on Illumina-basis used by many hospital hygiene departments worldwide.
+The results of our experiments so far are highly concordant to the results of SeqSphere+, a “gold standard” software for cgMLST analysis of bacterial outbreaks in the hospital context on Illumina-basis used by many hospital hygiene departments worldwide.
 
 To apply NanoCore, Nanopore data (or Nanopore or Illumina data) for either Sample you want to analyse, is needed.
 
