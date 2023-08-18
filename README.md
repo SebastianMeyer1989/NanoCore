@@ -70,9 +70,9 @@ sample404    Illumina  /Illumina_Data/sample404_R1.fastq  Illumina_Data/sample40
 ```
 - **--reference S.pecies_cgMLST_ref-seqs.fasta** = The core genome reference file for a certain species. Files for 8 clinically relevant species are provided in the chMLST_files folder.
 
-- **--clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont** = The path do the Nanopore model for the clair3 variant-caller. Should be included in the clair3 installation within the NanoCore package.
+- **--clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont** = The path do the Nanopore model for the clair3 variant-caller. Should be included in the clair3 installation within the NanoCore package. Needs to be changed into your installation path.
 
-- **--clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn** = The path do the Illumina model for the clair3 variant-caller. Should be included in the clair3 installation within the NanoCore package.
+- **--clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn** = The path do the Illumina model for the clair3 variant-caller. Should be included in the clair3 installation within the NanoCore package. Needs to be changed into your installation path.
 
 - **--threshold 20** = The minimum coverage threshold desired for the analysis. This value affects some of the implemented filters. If no threshold is set by the user, this valu is per default set to 20.
 
