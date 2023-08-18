@@ -13,6 +13,7 @@ The results of our experiments so far are highly concordant to the results of Se
 To apply NanoCore, Nanopore data (or Nanopore or Illumina data) for either Sample you want to analyse, is needed.
 
 The publication accompanying this tool can be found at: [WIP]
+
 The datasets analysed in this publication can be found in the Sequence Read Archive (SRA): [WIP]
 
 ### Overview of the NanoCore pipeline
