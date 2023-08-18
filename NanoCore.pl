@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# run example:   NanoCore.pl --sample_list sample_list.txt --reference S.aureus_cgMLST_ref-seqs.fasta --clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix NanoCore_Run_1
+# run example:	perl NanoCore.pl --sample_list sample_list.txt --reference S.aureus_cgMLST_ref-seqs.fasta --clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix NanoCore_Run_1
 #
 
 use Getopt::Long;
