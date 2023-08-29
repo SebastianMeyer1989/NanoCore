@@ -58,7 +58,7 @@ while($IDandPATH = <SAMPLELIST>){
 		$arraycounter=scalar(split("\t", $IDandPATH));	# count number of strings in line
 ### Processing of Nanopore Data ###
 		if($line_fields[1] eq "Nanopore" && $arraycounter==3){
-			$sampleID = $line_fields[0];				# save sample ID	### TO DO: Unique IDs needed!
+			$sampleID = $line_fields[0];				# save sample ID
 			$nano_path = $line_fields[2];				# save path
 			print IDS $sampleID."\n";
 
@@ -111,7 +111,7 @@ while($IDandPATH = <SAMPLELIST>){
 		}
 ### Processing of Illumina Data ###
 		elsif($line_fields[1] eq "Illumina" && $arraycounter==4){
-			$sampleID = $line_fields[0];		# save sample ID	### TO DO: Unique IDs needed!
+			$sampleID = $line_fields[0];		# save sample ID
 			$illu_path_1=$line_fields[2];		# save path
 			$illu_path_2=$line_fields[3];		# save path
 			print IDS $sampleID."\n";
@@ -438,7 +438,8 @@ while($sampleID = <FILELIST>){
 			$altAllele = $line_fields[4];
 			$quality = $line_fields[6];
 			@samplearray =  split(":", $line_fields[9]);			# GT:GQ:DP:AF
-			if($samplearray[0] eq "0/1"){												# ignore suspicions positions in allcomparisons! (this and the next 2 ifs)
+#			if($samplearray[0] eq "0/1"){														# ignore suspicions positions in allcomparisons! (this and the next 2 ifs)
+			if(($samplearray[0] eq "0/1")&&($samplearray[3]<=0.6)){								# alternative to above line. Could possibly solve abnormal amount of heterozygous calls
 				$suspos{$geneID}{$pos}++;														# add heterozygous calls to suspicions positions
 				print SUSPOS "\n".$geneID."\t".$pos."\tHeterozygous_in_at_least_one_isolate";	# print position to file
 				$hetecount{$sampleID}{$geneID}++;												# count heterozygous positions
@@ -568,7 +569,7 @@ foreach $iso1 (sort(keys(%variants))){
 								else{@counter_fields=()}
 							}
 #							else{die "Genomic position for the distance call not found.\n"}
-							if(exists($suspos{$gene}{$pos})){}			# exclude suspicious variants
+							if(exists($suspos{$gene}{$pos})){}										# exclude suspicious variants
 							else{
 								$counter=0;															# set AF counter to 0
 								foreach $field (@counter_fields){									# parse counting entries
@@ -576,7 +577,7 @@ foreach $iso1 (sort(keys(%variants))){
 										$counter+=$1;
 									}
 								}
-								if($counter/$genecov>=0.1){						# exclude positions, which have over 10% AF of the alternative allele in the mpileup file, otherwise count distance normal (else to this if)
+								if($counter/$genecov>=0.2){						# exclude positions, which have over 20% AF of the alternative allele in the mpileup file, otherwise count distance normal (else to this if)
 									print MPILEUPOUT "\n".$iso1."_vs._".$iso2."\t".$gene."\t".$pos."\t".$counter/$genecov;	# save positions that are excluded from the distance due to mpileup statistics
 								}
 								else{
@@ -727,7 +728,7 @@ print "
 \t\tOther files\t\t(Secondary clair3 output files)
 ";
 sleep(1);
-print "\n\tOutput_$prefix\_Stats//";
+print "\n\tOutput_$prefix\_Stats/";
 print "
 \t\t[SAMPLE_ID].coverage\t\t(Samtools coverage output)
 \t\t[SAMPLE_ID].depth\t\t(Samtools depth output)
@@ -741,12 +742,14 @@ print "
 \t\t".$prefix.".excluded_3_same_var\t\t(Genes per isolate pair with the same variants -> no distance)
 \t\t".$prefix.".excluded_4_mapq_plus_coverage\t\t(Excluded genes per isolate pair with unusual coverage AND low mapQ)
 \t\t".$prefix.".excluded_5_no_var\t\t(Genes per isolate pair without variants)
+\t\t".$prefix.".excluded_6_mpileup\t\t(Genes excluded through mpileup statistics)
+\t\t".$prefix.".excluded_genes_per_isolate\t\t(Summary of excluded genes per isolate)
 \t\t".$prefix.".suspos\t\t(Suspicious positions in genes that are excluded from the complete analysis due to heterozygozity, low quality or low allele frequenzy)
 \t\t".$prefix.".variantlist\t\t(List of called variants per isolate pair)
 \t\t".$prefix.".heat_excluded_ave_cov\t\t(Matrix for heatmap of genes with unusual coverage) 
 \t\t".$prefix.".heat_excluded_heterozyg\t\t(Matrix for heatmap of genes with unusual heterozygozity)
 \t\t".$prefix.".heat_excluded_mapQ\t\t(Matrix for heatmap of genes with unusual mapping quality)
-\t\t".$prefix."-boxplot_min_cov.pdf\t\t\t\t(Boxplot of ratio of positions per gene above coverage threshold of ".$threshold.")
+\t\t".$prefix."-boxplot_min_cov.pdf\t\t(Boxplot of ratio of positions per gene above coverage threshold of ".$threshold.")
 \t\t".$prefix."-heatmap_min_cov.pdf\t\t(Heatmap of ratio of positions per gene above coverage threshold of ".$threshold.")
 \t\t".$prefix."-stats_1.pdf\t\t(Plots of basic read statistics part 1/2)
 \t\t".$prefix."-stats_2.pdf\t\t(Plots of basic read statistics part 2/2)
