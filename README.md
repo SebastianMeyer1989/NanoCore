@@ -12,9 +12,8 @@ The results of our experiments so far are highly concordant to the results of Se
 
 To apply NanoCore, Nanopore data (or Nanopore or Illumina data) for either Sample you want to analyse, is needed.
 
-The publication accompanying this tool can be found at: [WIP]
-
-The datasets analysed in this publication can be found in the Sequence Read Archive (SRA): [WIP]
+The publication accompanying this tool can be found at: [WIP]  
+The datasets analyzed during the project are available at the Sequence Read Archive under the BioProject ID PRJNA1012291.
 
 ### Overview of the NanoCore pipeline
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/NanoCore_workflow.png)
@@ -43,12 +42,16 @@ And activated usind the following command:
 ```
 conda activate NanoCore
 ```
+Of note: The "NanoCore_dependencies.yml" file does not contain the newest versions of the used programs, but the versions we used to build the NanoCore tool. The workflow may also work with the most recent versions of the used programs, but it is also possible that some output formats (e.g. of the mapping tool or variant-caller) will be modified, thus interrupting programs later in the pipeline, which expect their input to be in a certain format.
 
 Additionally, we are currently working on creating a bioconda package for NanoCore.
 
 ## Running NanoCore
 The tool has no user-interface and is run from the terminal.
 Input sequencing data are specified using a simple sample sheet in tab-separated format; in addition, the user specifies a species-specific core genome reference file. Reference files for 8 bacterial species are included in the NanoCore package (the cgMLST_files folder). In addition, the user may specify a minimum coverage threshold (default 20) and the number of threads used for components of the pipeline that support multithreading.
+
+We also prepared two small batches of test data to run a NanoCore example analysis either for VRE in "Nanopore-only" mode or MRSA in "Hybrid" mode. For further instructions on how to download the corresponding datasets and run the analysis, please read the part "NanoCore Example Run" which is located directly after this "Running NanoCore" paragraph.
+
 To run NanoCore the following command is needed:
 ```
 perl NanoCore.pl --sample_list sample_list.txt --reference S.pecies_cgMLST_ref-seqs.fasta --clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix NanoCore_Run_1
@@ -56,9 +59,8 @@ perl NanoCore.pl --sample_list sample_list.txt --reference S.pecies_cgMLST_ref-s
 
 ### Input explained
 
-- **perl NanoCore.pl** = The NanoCore algorithm.
-
-- **--sample_list sample_list.txt** = A tab-separated file containing one line per sample with the isolate ID, the tag "Nanopore" or "Illummina" to define the used sequencing method, and the paths to either the Nanopore sequencing data file or the Illumina sequencing data R1 and R2 files.
+- **perl NanoCore.pl** = The NanoCore algorithm.  
+- **--sample_list sample_list.txt** = A tab-separated file containing one line per sample with the isolate ID, the tag "Nanopore" or "Illummina" to define the used sequencing method, and the paths to either the Nanopore sequencing data file or the Illumina sequencing data R1 and R2 files.  
 ##### Example:
 ```
 Isolate_1    Illumina  /Illumina_Data/isolate_1_R1.fastq  Illumina_Data/isolate_1_R2.fastq
@@ -68,18 +70,12 @@ Benjamin     Illumina  /Illumina_Data/Benjamin_R1.fastq  Illumina_Data/Benjamin_
 sample404    Illumina  /Illumina_Data/sample404_R1.fastq  Illumina_Data/sample404_R2.fastq
 …
 ```
-- **--reference S.pecies_cgMLST_ref-seqs.fasta** = The core genome reference file for a certain species. Files for 8 clinically relevant species are provided in the chMLST_files folder.
-
-- **--clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont** = The path do the Nanopore model for the clair3 variant-caller. Should be included in the clair3 installation within the NanoCore package. Needs to be changed into your installation path.
-
-- **--clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn** = The path do the Illumina model for the clair3 variant-caller. Should be included in the clair3 installation within the NanoCore package. Needs to be changed into your installation path.
-
-- **--threshold 20** = The minimum coverage threshold desired for the analysis. This value affects some of the implemented filters. If no threshold is set by the user, this valu is per default set to 20.
-
-- **--threads 8** = The number of threads used for components of the pipeline that support multithreading.
-
-- **--samtools samtools** = The samtools executable. Should be included in the samtools installation within the NanoCore package. If no executable is set by the user, this valu is per default set to "samtools".
-
+- **--reference S.pecies_cgMLST_ref-seqs.fasta** = The core genome reference file for a certain species. Files for 8 clinically relevant species are provided in the chMLST_files folder.  
+- **--clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont** = The path do the Nanopore model for the clair3 variant-caller. Should be included in the clair3 installation within the NanoCore package. Needs to be changed into your installation path.  
+- **--clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn** = The path do the Illumina model for the clair3 variant-caller. Should be included in the clair3 installation within the NanoCore package. Needs to be changed into your installation path.  
+- **--threshold 20** = The minimum coverage threshold desired for the analysis. This value affects some of the implemented filters. If no threshold is set by the user, this valu is per default set to 20.  
+- **--threads 8** = The number of threads used for components of the pipeline that support multithreading.  
+- **--samtools samtools** = The samtools executable. Should be included in the samtools installation within the NanoCore package. If no executable is set by the user, this value is per default set to "samtools".  
 - **--prefix NanoCore_Run_1** = The chosen prefix/name for the current nanoCore run.
 
 ### Output explained
@@ -94,13 +90,11 @@ Nevertheless, for completeness here we list everything NanoCore produces:
   - [SAMPLE_ID].bam = Original mapping output from the mapper minimap2.
   - [SAMPLE_ID]_new_FLAGs.bam = Correctd mapping output.
   - [SAMPLE_ID]_new_FLAGs.bam.bai = Index file to corrected mapping output.
-  - [SAMPLE_ID]_new_FLAGs_mpileup.txt = Samtools mpileup file to corrected mapping output.
-
+  - [SAMPLE_ID]_new_FLAGs_mpileup.txt = Samtools mpileup file to corrected mapping output.  
 - Output_NanoCore_Run_1_Clair/[SAMPLE_ID]/
   - [SAMPLE_ID]_merge_output.vcf = Variant-calls from the variant-caller clair3.
   - run_clair3.log = Log file from the variant-calling.
-  - Other files = Secondary clair3 output files.
-
+  - Other files = Secondary clair3 output files.  
 - Output_NanoCore_Run_1_Stats/
   - [SAMPLE_ID].coverage = Samtools coverage output.
   - [SAMPLE_ID].depth = Samtools depth output.
@@ -128,11 +122,62 @@ Nevertheless, for completeness here we list everything NanoCore produces:
   - NanoCore_Run_1-mst.pdf = Minimum-spanning-tree of all samples from this run. Dashed edge means no distance.
   - NanoCore_Run_1-heatmap_cov.pdf = Heatmap of genes with unusual coverage.
   - NanoCore_Run_1-heatmap_hete.pdf = Heatmap of genes with unusual heterozygosity.
-  - NanoCore_Run_1-heatmap_mapq.pdf = Heatmap of genes with unusual mapping quality.
-	
+  - NanoCore_Run_1-heatmap_mapq.pdf = Heatmap of genes with unusual mapping quality.  
 - Output_NanoCore_Run_1_Tables/
   - NanoCore_Run_1_variant_table.txt = Distance matrix on basis of variants.
   - NanoCore_Run_1_allele_table.txt = Distance matrix on basis of alleles.
   - NanoCore_Run_1_consensus_table.txt = Similarity matrix on basis of variants.
   - NanoCore_Run_1_per_gene_variant_table.txt = Table of variants per gene per isolate pair.
   - NanoCore_Run_1_per_gene_total_table.txt = Total variants per gene over all isolates.
+
+## NanoCore Example Run
+
+Here we explain how to download the test datasets and run the NanoCore analysis for two small analysis that should be donw in few hours.
+For both runs NanoCore needs to be installed and the environment activated according to the above instructions.
+
+### Test Dataset 1: VRE in "Nanopore-only" mode
+You can download the corresponding data from the following link: https://osf.io/yz35s/.  
+The file you are looking for is called "Testdata_VRE_Nanopore-only.tar.gz". It contains Nanopore sequencing data of 5 isolates, a file called "Example_VRE_nanopore_used_ressources.txt", which lists the ressources our test run needed (output of the time command), as well as a sample sheet called "sample_list_VRE_nano_testdata.txt", which lists the ID, the tag "Nanopore" and the paths to the Nanopore sequencing data, as clarified in the paragraph "Input explained" above. You just need extract the tar.gz file into your NanoCore main folder and insert the absolute path of the directory the downloaded sequencing data is saved in to the pathways listed in the "sample_list_VRE_nano_testdata.txt" file, so it looks for example like this:
+```
+VRE_N_BC_03	Nanopore	/your/path/to/this/folder/VRE_Nanopore-only_example/VRE_N_BC_03.fastq
+…
+```
+
+You can then run the analysis using the following command:
+```
+perl NanoCore.pl --sample_list VRE_Nanopore-only_example/sample_list_VRE_nano_testdata.txt --reference cgMLST_files/E.faecium_cgMLST_ref-seqs.fasta --clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix Example_VRE_nanopore
+```
+Of note: You will need to change the installation path of the "--clair_model_nano" and the "--clair_model_illu" option and maybe also where your "--samtools" executable is found.  
+For further explanation on what the different options do, please look into the "Running NanoCore" paragraph.  
+This analysis should run ~2hours on 8 cores, use <2gb of memory and produce <8gb of output data.  
+The distance-matrix "Example_VRE_nanopore_allele_table.txt" and minimum-spanning-tree "Example_VRE_nanopore-mst.pdf" should look like this: 
+
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Testdata_Figures/VRE_Nanocore-only_testdata_distmat.PNG)
+
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Testdata_Figures/VRE_Nanocore-only_testdata_mst.PNG)
+
+
+### Test Dataset 2: MRSA in "Hybrid" mode
+
+You can download the corresponding data from the following link: https://osf.io/yz35s/.  
+The file you are looking for is called "Testdata_MRSA_Hybrid.tar.gz". It contains Nanopore sequencing data of 2 isolates and Illumina sequencing data of 3 isolates, a file called "Example_VRE_nanopore_used_ressources.txt", which lists the ressources our test run needed (output of the time command), as well as a sample sheet called "sample_list_MRSA_hybrid_testdata.txt", which lists the ID, the tag "Nanopore" or "Illumina" and the paths to the Nanopore or Illumina sequencing data, as clarified in the paragraph "Input explained" above. You just need extract the tar.gz file into your NanoCore main folder and insert the absolute path of the directory the downloaded sequencing data is saved in to the pathways listed in the "sample_list_VRE_nano_testdata.txt" file, so it looks for example like this:
+```
+MRSA_N_BC_01	Nanopore	/your/path/to/this/folder/MRSA_Hybrid_example/VRE_N_BC_03.fastq
+MRSA_I_BC_01	Illumina	/your/path/to/this/folder/MRSA_Hybrid_example/MRSA_I_BC_02_R1.fastq	/your/path/to/this/folder/MRSA_Hybrid_example/MRSA_I_BC_02_R2.fastq
+…
+```
+
+You can then run the analysis using the following command:
+```
+perl NanoCore.pl --sample_list MRSA_Hybrid_example/sample_list_MRSA_hybrid_testdata.txt --reference cgMLST_files/S.aureus_cgMLST_ref-seqs.fasta --clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix Example_MRSA_hybrid
+```
+Of note: You will need to change the installation path of the "--clair_model_nano" and the "--clair_model_illu" option and maybe also where your "--samtools" executable is found.  
+For further explanation on what the different options do, please look into the "Running NanoCore" paragraph.  
+This analysis should run ~3hours on 8 cores, use <3gb of memory and produce <8gb of output data.  
+The distance-matrix "Example_MRSA_hybrid_allele_table.txt" and minimum-spanning-tree "Example_MRSA_hybrid-mst.pdf" should look like this: 
+
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Testdata_Figures/MRSA_Hybrid_testdata_distmat.PNG)
+
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Testdata_Figures/MRSA_Hybrid_testdata_mst.PNG)
+
+
