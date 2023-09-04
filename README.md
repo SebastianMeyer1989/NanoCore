@@ -147,8 +147,7 @@ You can then run the analysis using the following command:
 ```
 perl NanoCore.pl --sample_list VRE_Nanopore-only_example/sample_list_VRE_nano_testdata.txt --reference cgMLST_files/E.faecium_cgMLST_ref-seqs.fasta --clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix Example_VRE_nanopore
 ```
-Of note: You will need to change the installation path of the "--clair_model_nano" and the "--clair_model_illu" option and maybe also where your "--samtools" executable is found.  
-For further explanation on what the different options do, please look into the "Running NanoCore" paragraph.  
+Of note: You will need to change the installation path of the "--clair_model_nano" and the "--clair_model_illu" option and maybe also where your "--samtools" executable is found. For information about this and further explanation on what the different options do, please look into the "Running NanoCore" paragraph.  
 This analysis should run ~2hours on 8 cores, use <2gb of memory and produce <8gb of output data.  
 The distance-matrix "Example_VRE_nanopore_allele_table.txt" and minimum-spanning-tree "Example_VRE_nanopore-mst.pdf" should look like this: 
 
@@ -163,7 +162,7 @@ You can download the corresponding data from the following link: https://osf.io/
 The file you are looking for is called "Testdata_MRSA_Hybrid.tar.gz". It contains Nanopore sequencing data of 2 isolates and Illumina sequencing data of 3 isolates, a file called "Example_VRE_nanopore_used_ressources.txt", which lists the ressources our test run needed (output of the time command), as well as a sample sheet called "sample_list_MRSA_hybrid_testdata.txt", which lists the ID, the tag "Nanopore" or "Illumina" and the paths to the Nanopore or Illumina sequencing data, as clarified in the paragraph "Input explained" above. You just need extract the tar.gz file into your NanoCore main folder and insert the absolute path of the directory the downloaded sequencing data is saved in to the pathways listed in the "sample_list_VRE_nano_testdata.txt" file, so it looks for example like this:
 ```
 MRSA_N_BC_01	Nanopore	/your/path/to/this/folder/MRSA_Hybrid_example/VRE_N_BC_03.fastq
-MRSA_I_BC_01	Illumina	/your/path/to/this/folder/MRSA_Hybrid_example/MRSA_I_BC_02_R1.fastq	/your/path/to/this/folder/MRSA_Hybrid_example/MRSA_I_BC_02_R2.fastq
+MRSA_I_BC_03	Illumina	/your/path/to/this/folder/MRSA_Hybrid_example/MRSA_I_BC_03_R1.fastq	/your/path/to/this/folder/MRSA_Hybrid_example/MRSA_I_BC_03_R2.fastq
 …
 ```
 
@@ -171,8 +170,7 @@ You can then run the analysis using the following command:
 ```
 perl NanoCore.pl --sample_list MRSA_Hybrid_example/sample_list_MRSA_hybrid_testdata.txt --reference cgMLST_files/S.aureus_cgMLST_ref-seqs.fasta --clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix Example_MRSA_hybrid
 ```
-Of note: You will need to change the installation path of the "--clair_model_nano" and the "--clair_model_illu" option and maybe also where your "--samtools" executable is found.  
-For further explanation on what the different options do, please look into the "Running NanoCore" paragraph.  
+Of note: You will need to change the installation path of the "--clair_model_nano" and the "--clair_model_illu" option and maybe also where your "--samtools" executable is found. For information about this and further explanation on what the different options do, please look into the "Running NanoCore" paragraph.  
 This analysis should run ~3hours on 8 cores, use <3gb of memory and produce <8gb of output data.  
 The distance-matrix "Example_MRSA_hybrid_allele_table.txt" and minimum-spanning-tree "Example_MRSA_hybrid-mst.pdf" should look like this: 
 
