@@ -171,7 +171,7 @@ You can then run the analysis using the following command:
 perl NanoCore.pl --sample_list MRSA_Hybrid_example/sample_list_MRSA_hybrid_testdata.txt --reference cgMLST_files/S.aureus_cgMLST_ref-seqs.fasta --clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix Example_MRSA_hybrid
 ```
 Of note: You will need to change the installation path of the "--clair_model_nano" and the "--clair_model_illu" option and maybe also where your "--samtools" executable is found. For information about this and further explanation on what the different options do, please look into the "Running NanoCore" paragraph.  
-This analysis should run ~3hours on 8 cores, use <3gb of memory and produce <8gb of output data.  
+This analysis should run ~3hours on 8 cores, use <3gb of memory and produce <5gb of output data.  
 The distance-matrix "Example_MRSA_hybrid_allele_table.txt" and minimum-spanning-tree "Example_MRSA_hybrid-mst.pdf" should look like this: 
 
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Testdata_Figures/MRSA_Hybrid_testdata_distmat.PNG)
