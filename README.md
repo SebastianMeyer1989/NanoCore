@@ -13,7 +13,7 @@ The results of our experiments so far are highly concordant to the results of Se
 To apply NanoCore, Nanopore data (or Nanopore or Illumina data) for either Sample you want to analyse, is needed.
 
 The publication accompanying this tool can be found at: [WIP]  
-The datasets analyzed during the project are available at the Sequence Read Archive under the BioProject ID PRJNA1012291.
+The datasets analyzed during the project will be available at the Sequence Read Archive under the BioProject ID PRJNA1012291.
 
 ### Overview of the NanoCore pipeline
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/NanoCore_workflow.png)
