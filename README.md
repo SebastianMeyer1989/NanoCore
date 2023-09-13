@@ -179,3 +179,59 @@ The distance-matrix "Example_MRSA_hybrid_allele_table.txt" and minimum-spanning-
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Testdata_Figures/MRSA_Hybrid_testdata_mst.PNG)
 
 
+## Known issues and how to solve them
+In this paragraph we will explain potential issues you could encounter within your output data
+
+
+### Unexpected low-distance pattern in the distance matrix
+
+#### Characteristics
+Should you encounter a pattern like this,  
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/low_distance_issue_distmat.PNG)  
+where a number of isolates (in this case "SSI-039A" and "SSI-039B") produce a similarly low distance to all other isolates, while the mean distanct between these other isolates if far higher, then there are probably some issues with the used data.  
+The corresponding minimum-spanning-tree would look like this:  
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/low_distance_issue_mst.PNG)  
+Nearly all isolates are connected to one of the possibly faulty isolates with low distance numbers, that do not add up to the >1500 distance that should exist between the other isolates.  
+
+#### Reasons
+There are two probable reasons for this:  
+First, it is possible, that there is not enough sequencing data for these isolates. A to low coverage overall (minimun threshold is 20x per default) could exclude to many genes through the included coverage filters, thus leaving to few genes for a reasonable analysis.  
+Second, it is possible, that your sequencing data contains contaminations (some isolates got mixed during the library preparation, etc.). This could lead to the exclusion of to many genes through the included heterozygosity filter, also leavinf to few genes for a reasonable analysis.  
+
+If this (or a similar issue) is the reason, you should be able to see a few patterns in some of the other output files:  
+The per default created heatmaps for genes with such issues should show a higher numer of genes for these isolates. The corresponding heatmaps can be found in the "Output_[PREFIX]_Stats" directory:  
+  - [PREFIX]-heatmap_cov.pdf = Heatmap of genes with unusual coverage.
+  - [PREFIX]-heatmap_hete.pdf = Heatmap of genes with unusual heterozygosity.
+  - [PREFIX]-heatmap_mapq.pdf = Heatmap of genes with unusual mapping quality.
+
+Part of the heterozygosity heatmap looks for example like this:  
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/low_distance_issue_heatmap.PNG)  
+"SSI-039A" and "SSI-039B" are clearly cases with an above-average number of such genes.  
+Of note: Isolates like "SSI-128B" could also be such candidates, but this isolate was kept in the example here, since id did not produce a comparably low distance.  
+
+Another indicator is the samtools coverage file "[SAMPLE_ID].coverage" found in the "Output_[PREFIX]_Stats" directory. While the sequencing data should normaly include data for almost all analysed genes of the corrresponding core genome, here more that 1000 genes are missing (while the present genes all have a aingle-digit coverage):  
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/low_distance_issue_cov.PNG)  
+This is only a screenshot from the middle of the file. First, second and third column are the Gene-ID, and the start and end of the gene. All the zeros after that show that no data was found.  
+
+#### Solution
+Since this issue results from a low amount of sequencing data or a contamination in your DNA, best practice would be to just re-sequence all problemati isolates, ideally also repeating the isolate cultivation.  
+If this is not feasible, you could ust exclude the isolates in question from your sample sheet and rerun the analysis. This should run much faster now, since the most-time-consuming parts of the pipeline (the mapping and variant-calling) are already done and do not need to be repeated.  
+
+
+### Unexpected NO-distance pattern in the distance matrix  
+
+#### Characteristics
+This is basically a far more drastic version of the former "low-distance pattern in the distance matrix" issue
+Should you encounter a pattern like this,  
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/no_distance_issue_distmat.PNG)  
+where a number of isolates (in this case "GW20g") produce no diatance at all to (all) other isolates, then there are probably some issues with the used data.  
+The corresponding minimum-spanning-tree could look like this:  
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/no_distance_issue_mst.PNG)  
+Nearly all isolates are connected to the possibly faulty isolate no distance.  
+
+#### Reasons
+Same as in the former issue, but more drastic. Basically no sequencing data at all, or a contamination over the complete genome length
+The above mentioned heatmaps and coverage files should show more conspicious genes, and less present genes respectively.  
+
+#### Solution
+Also same as in the former issue: Re-cultivating plus re-sequencing, or exclusion of the isolate from the analysis.  
