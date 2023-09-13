@@ -1,6 +1,7 @@
 # NanoCore
 
 
+
 ## Introduction
 
 NanoCore is a user-friendly tool developed specifically for the analysis of putative bacterial outbreaks with Nanopore sequencing data on basis of a species specific core genome.
@@ -15,15 +16,21 @@ To apply NanoCore, Nanopore data (or Nanopore or Illumina data) for either Sampl
 The publication accompanying this tool can be found at: [WIP]  
 The datasets analyzed during the project will be available at the Sequence Read Archive under the BioProject ID PRJNA1012291.
 
+
+
 ### Overview of the NanoCore pipeline
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/NanoCore_workflow.png)
 
 The NanoCore method (right), in comparison to a well-established method for the computation of cgMLST-based distances (SeqSphere+, left). NanoCore maps the provided sequencing data to the corresponding core genome, calls variants from those mappings, applies various filters to the results and produces different statistics, a distance matrix and a minimum-spanning-tree.
 
+
+
 ## Program Requirements and Installation
 The programm was tested on the following Operating Systems:
 - CentOS Linux 6.2.0-26-generic x86_64
 - Ubuntu 22.04.3 LTS
+
+
 
 ### The following programming languages and tools need to be installed:
 
@@ -57,6 +64,8 @@ To run NanoCore the following command is needed:
 perl NanoCore.pl --sample_list sample_list.txt --reference S.pecies_cgMLST_ref-seqs.fasta --clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont --clair_model_illu /home/user/Software/miniconda3/envs/clair3/bin/models/ilmn --threshold 20 --threads 8 --samtools samtools --prefix NanoCore_Run_1
 ```
 
+
+
 ### Input explained
 
 - **perl NanoCore.pl** = The NanoCore algorithm.  
@@ -77,6 +86,8 @@ sample404    Illumina  /Illumina_Data/sample404_R1.fastq  Illumina_Data/sample40
 - **--threads 8** = The number of threads used for components of the pipeline that support multithreading.  
 - **--samtools samtools** = The samtools executable. Should be included in the samtools installation within the NanoCore package. If no executable is set by the user, this value is per default set to "samtools".  
 - **--prefix NanoCore_Run_1** = The chosen prefix/name for the current nanoCore run.
+
+
 
 ### Output explained
 
@@ -130,10 +141,14 @@ Nevertheless, for completeness here we list everything NanoCore produces:
   - NanoCore_Run_1_per_gene_variant_table.txt = Table of variants per gene per isolate pair.
   - NanoCore_Run_1_per_gene_total_table.txt = Total variants per gene over all isolates.
 
+
+
 ## NanoCore Example Run
 
 Here we explain how to download the test datasets and run the NanoCore analysis for two small analysis that should be donw in few hours.
 For both runs NanoCore needs to be installed and the environment activated according to the above instructions.
+
+
 
 ### Test Dataset 1: VRE in "Nanopore-only" mode
 You can download the corresponding data from the following link: https://osf.io/yz35s/.  
@@ -154,6 +169,7 @@ The distance-matrix "Example_VRE_nanopore_allele_table.txt" and minimum-spanning
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Testdata_Figures/VRE_Nanocore-only_testdata_distmat.PNG)
 
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Testdata_Figures/VRE_Nanocore-only_testdata_mst.PNG)
+
 
 
 ### Test Dataset 2: MRSA in "Hybrid" mode
@@ -179,8 +195,10 @@ The distance-matrix "Example_MRSA_hybrid_allele_table.txt" and minimum-spanning-
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Testdata_Figures/MRSA_Hybrid_testdata_mst.PNG)
 
 
+
 ## Known issues and how to solve them
 In this paragraph we will explain potential issues you could encounter within your output data
+
 
 
 ### Unexpected low-distance pattern in the distance matrix
@@ -216,6 +234,7 @@ This is only a screenshot from the middle of the file. First, second and third c
 #### Solution
 Since this issue results from a low amount of sequencing data or a contamination in your DNA, best practice would be to just re-sequence all problemati isolates, ideally also repeating the isolate cultivation.  
 If this is not feasible, you could ust exclude the isolates in question from your sample sheet and rerun the analysis. This should run much faster now, since the most-time-consuming parts of the pipeline (the mapping and variant-calling) are already done and do not need to be repeated.  
+
 
 
 ### Unexpected NO-distance pattern in the distance matrix  
