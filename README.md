@@ -78,7 +78,8 @@ Isolate_17   Nanopore  /Nanopore_Data/isolate_17.fastq
 MRSA_H4      Nanopore  /Nanopore_Data/MRSA_H4.fastq
 Benjamin     Illumina  /Illumina_Data/Benjamin_R1.fastq  Illumina_Data/Benjamin_R2.fastq
 sample404    Illumina  /Illumina_Data/sample404_R1.fastq  Illumina_Data/sample404_R2.fastq
-…
+...
+...
 ```
 - **--reference S.pecies_cgMLST_ref-seqs.fasta** = The core genome reference file for a certain species. Files for 8 clinically relevant species are provided in the chMLST_files folder.  
 - **--clair_model_nano /home/user/Software/miniconda3/envs/clair3/bin/models/ont** = The path do the Nanopore model for the clair3 variant-caller. Should be included in the clair3 installation within the NanoCore package. Needs to be changed into your installation path.  
@@ -156,7 +157,8 @@ You can download the corresponding data from the following link: https://osf.io/
 The file you are looking for is called "Testdata_VRE_Nanopore-only.tar.gz" (2.6gb). It contains Nanopore sequencing data of 5 isolates, a file called "Example_VRE_nanopore_used_ressources.txt", which lists the ressources our test run needed (output of the time command), as well as a sample sheet called "sample_list_VRE_nano_testdata.txt", which lists the ID, the tag "Nanopore" and the paths to the Nanopore sequencing data, as clarified in the paragraph "Input explained" above. You just need extract the tar.gz file into your NanoCore main folder and insert the absolute path of the directory the downloaded sequencing data is saved in to the pathways listed in the "sample_list_VRE_nano_testdata.txt" file, so it looks for example like this:
 ```
 VRE_N_BC_03	Nanopore	/your/path/to/this/folder/VRE_Nanopore-only_example/VRE_N_BC_03.fastq
-…
+...
+...
 ```
 
 You can then run the analysis using the following command:
@@ -180,7 +182,8 @@ The file you are looking for is called "Testdata_MRSA_Hybrid.tar.gz" (<1gb). It 
 ```
 MRSA_N_BC_01	Nanopore	/your/path/to/this/folder/MRSA_Hybrid_example/VRE_N_BC_03.fastq
 MRSA_I_BC_03	Illumina	/your/path/to/this/folder/MRSA_Hybrid_example/MRSA_I_BC_03_R1.fastq	/your/path/to/this/folder/MRSA_Hybrid_example/MRSA_I_BC_03_R2.fastq
-…
+...
+...
 ```
 
 You can then run the analysis using the following command:
@@ -207,15 +210,15 @@ In this paragraph we will explain potential issues you could encounter within yo
 #### Characteristics
 Should you encounter a pattern like this,  
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/low_distance_issue_distmat.PNG)  
-where a number of isolates (in this case "SSI-039A" and "SSI-039B") produce a similarly low distance to all other isolates, while the mean distanct between these other isolates if far higher, then there are probably some issues with the used data.  
+where a number of isolates (in this case "SSI-039A" and "SSI-039B") produce a similarly low distance to all other isolates, while the mean distanct between these other isolates is far higher, then there are probably some issues with the used data.  
 The corresponding minimum-spanning-tree would look like this:  
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/low_distance_issue_mst.PNG)  
-Nearly all isolates are connected to one of the possibly faulty isolates with low distance numbers, that do not add up to the >1500 distance that should exist between the other isolates.  
+Nearly all isolates are connected to one of the possibly faulty isolates with low distance numbers, that by far do not add up to the >1500 distance that should exist between the other isolates.  
 
 #### Reasons
 There are two probable reasons for this:  
-First, it is possible, that there is not enough sequencing data for these isolates. A to low coverage overall (minimun threshold is 20x per default) could exclude to many genes through the included coverage filters, thus leaving to few genes for a reasonable analysis.  
-Second, it is possible, that your sequencing data contains contaminations (some isolates got mixed during the library preparation, etc.). This could lead to the exclusion of to many genes through the included heterozygosity filter, also leavinf to few genes for a reasonable analysis.  
+First, it is possible, that there is not enough sequencing data for these isolates. A too low overall coverage (minimun threshold is 20x per default) could exclude too many genes through the included coverage filters, thus leaving too few genes for a reasonable analysis.  
+Second, it is possible, that your sequencing data contains contaminations (some isolates got mixed during the library preparation, etc.). This could lead to the exclusion of too many genes through the included heterozygosity filter, also leaving too few genes for a reasonable analysis.  
 
 If this (or a similar issue) is the reason, you should be able to see a few patterns in some of the other output files:  
 The per default created heatmaps for genes with such issues should show a higher numer of genes for these isolates. The corresponding heatmaps can be found in the "Output_[PREFIX]_Stats" directory:  
@@ -226,28 +229,28 @@ The per default created heatmaps for genes with such issues should show a higher
 Part of the heterozygosity heatmap looks for example like this:  
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/low_distance_issue_heatmap.PNG)  
 "SSI-039A" and "SSI-039B" are clearly cases with an above-average number of such genes.  
-Of note: Isolates like "SSI-128B" could also be such candidates, but this isolate was kept in the example here, since id did not produce a comparably low distance.  
+Of note: Isolates like "SSI-128B" could also be such candidates, but this isolate was kept in the example here, since it did not show a suspicious behaviour.  
 
-Another indicator is the samtools coverage file "[SAMPLE_ID].coverage" found in the "Output_[PREFIX]_Stats" directory. While the sequencing data should normaly include data for almost all analysed genes of the corrresponding core genome, here more that 1000 genes are missing (while the present genes all have a aingle-digit coverage):  
+Another indicator is the samtools coverage file "[SAMPLE_ID].coverage" found in the "Output_[PREFIX]_Stats" directory. While the sequencing data should normaly include data for almost all analysed genes of the corrresponding core genome, here more that 1000 genes are missing (while the present genes all have a single-digit coverage):  
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/low_distance_issue_cov.PNG)  
 This is only a screenshot from the middle of the file. First, second and third column are the Gene-ID, and the start and end of the gene. All the zeros after that show that no data was found.  
 
 #### Solution
-Since this issue results from a low amount of sequencing data or a contamination in your DNA, best practice would be to just re-sequence all problemati isolates, ideally also repeating the isolate cultivation.  
-If this is not feasible, you could ust exclude the isolates in question from your sample sheet and rerun the analysis. This should run much faster now, since the most-time-consuming parts of the pipeline (the mapping and variant-calling) are already done and do not need to be repeated.  
+Since this issue results from a low amount of sequencing data or a contamination in your sample, best practice would be to just re-sequence all problematic isolates, ideally also repeating the isolate cultivation.  
+If this is not feasible, you could just exclude the isolates in question from your sample sheet and rerun the analysis. This should run much faster now, since the most-time-consuming parts of the pipeline (the mapping and variant-calling) are already done and do not need to be repeated.  
 
 
 
 ### Unexpected NO-distance pattern in the distance matrix  
 
 #### Characteristics
-This is basically a far more drastic version of the former "low-distance pattern in the distance matrix" issue
+This is basically a far more drastic version of the former "low-distance pattern in the distance matrix" issue.  
 Should you encounter a pattern like this,  
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/no_distance_issue_distmat.PNG)  
 where a number of isolates (in this case "GW20g") produce no diatance at all to (all) other isolates, then there are probably some issues with the used data.  
 The corresponding minimum-spanning-tree could look like this:  
 ![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/Known_Issues_Figures/no_distance_issue_mst.PNG)  
-Nearly all isolates are connected to the possibly faulty isolate no distance.  
+Nearly all isolates are connected to the possibly faulty isolate with no distance.  
 
 #### Reasons
 Same as in the former issue, but more drastic. Basically no sequencing data at all, or a contamination over the complete genome length
