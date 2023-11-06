@@ -37,6 +37,11 @@ The programm was tested on the following Operating Systems:
 
 - Conda
 - R
+- R Packages:
+  - ape
+  - pegas
+  - sna
+  - pheatmap
 - Perl
 - Perl Modules:
   - Getopt::Long
