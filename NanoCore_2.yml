@@ -1,0 +1,10 @@
+name: NanoCore_2
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-ape=5.6_2
+  - r-pegas=1.1
+  - r-sna=2.7
+  - r-pheatmap=1.0.12
