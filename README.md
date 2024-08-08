@@ -94,7 +94,7 @@ The currently installed clair3 models can be found in your NanoCore_1 environmen
 
 
 ### Adding samples to an existing analysis
-It is possible, to add new samples to a finished analysis. To achieve this, NanoCore needs to be re-run with the same prefix and an extended sample sheet, that contains the already processed samples AND the new samples. Mapping and variant calling (which are the most time-consuming steps) will be skipped for all previously included samples. Only steps that involve all samples (e.g. distance calculation and matrix generation) are re-executed for the complete set of samples.
+It is possible, to add new samples to a finished NanoCore run. To achieve this, NanoCore needs to be re-run with the same prefix and an extended sample sheet, that contains the already processed samples AND the new samples. Mapping and variant calling (which are the most time-consuming steps) will be skipped for all previously included samples. Only steps that involve all samples (e.g. distance calculation and matrix generation) are re-executed for the complete set of samples.
 
 
 
