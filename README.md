@@ -31,6 +31,8 @@ The programm was tested on the following Operating Systems:
 - CentOS Linux 6.2.0-26-generic x86_64
 - Ubuntu 22.04.3 LTS
 
+For NanoCore to run properly, we recommend to use squencing data between 500MB and 3GB file-size. Smaller file could contain a to low amount of sequencing data to run without errors (as e.g. explained further down in "Known issues and how to solve them"). Bigger files may lead to a very long run time and a termination of the script, should the available memory not suffice.
+
 
 
 ### The following programming languages and tools are necessary for NanoCore:
@@ -60,16 +62,37 @@ Of note: The.sml files do not necessarily contain the newest versions of the use
 
 ## Running NanoCore
 The tool has no user-interface and is run from the terminal.
-Input sequencing data are specified using a simple sample sheet in tab-separated format; in addition, the user specifies a species-specific core genome reference file. Reference files for 8 bacterial species are included in the NanoCore package (the "cgMLST_files" folder). In addition, the user needs to specify the number of threads used for components of the pipeline that support multithreading (recommended at least 8 ) and may specify a minimum coverage threshold (default: 20) and the samtools binary (default: samtools). 
+Input sequencing data are specified using a simple sample sheet in tab-separated format; in addition, the user specifies a species-specific core genome reference file. Reference files for 8 bacterial species are included in the NanoCore package (the "cgMLST_files" folder). In addition, the user needs to specify the number of threads used for components of the pipeline that support multithreading (recommended at least 8) and may specify a minimum coverage threshold (default: 20) and the samtools binary (default: samtools). 
 
 We also prepared two small batches of test data to run a NanoCore example analysis either for VRE in "Nanopore-only" mode or MRSA in "Hybrid" mode. For further instructions on how to download the corresponding datasets and run the analysis, please read the part "NanoCore Example Run" which is located directly after this "Running NanoCore" paragraph.
+
+To get help about the parameters NanoCore needs, simply run one of the following commands:
+```
+./NanoCore_v1.0.5.sh -h
+./NanoCore_v1.0.5.sh --help
+```
+This will tell you, which input in which format is required for NanoCore to run
+
+To get the currently installed version of NanoCore, run one of the following commands:
+```
+./NanoCore_v1.0.5.sh -v
+./NanoCore_v1.0.5.sh --version
+```
 
 To run NanoCore the following command is needed:
 ```
 ./NanoCore_v1.0.5.sh -s SampleSheet.txt -r cgMLST_files/Species_cgMLST_ref-seqs.fasta -p NanoCore_Run_1 -t 8 -m 20 -b samtools
 ```
 
-NanoCore can be executed from a user-chosen folder. Pleas keep in mind, that the pathways to the NanoCore script, the sample sheet and the reference need to be modified accordingly.
+NanoCore can be executed from a user-chosen folder. Please keep in mind, that the pathways to the NanoCore script, the sample sheet and the reference need to be modified accordingly.
+
+The currently installed clair3 models can be found in your NanoCore_1 environment path (within your conda/miniconda path) e.g. "/path/to/miniconda3/envs/NanoCore_1/bin/models/" and should contain basic models like "ont" (for Nanopore data), "ilmn" (for Illumina data) and a few more. More models for clair3, that maybe fit better to your type of sequencing data, can be downloaded from ONTs GitHub Rerio repo (https://github.com/nanoporetech/rerio) and saved in the same path.
+
+
+
+### Adding new samples to a finished NanoCore run
+It is possible, to add new samples to a finished analysis. To achieve this, NanoCore needs to be re-run with the same prefix and an extended sample sheet, that contains the already processed samples AND the new samples. Mapping and variant calling (which are the most time-consuming steps) will be skipped for all previously included samples. Only steps that involve all samples (e.g. distance calculation and matrix generation) are re-executed for the complete set of samples.
+
 
 
 ### Input explained
