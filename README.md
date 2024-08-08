@@ -89,7 +89,7 @@ To run NanoCore the following command is needed:
 
 NanoCore can be executed from a user-chosen folder. Please keep in mind, that the pathways to the NanoCore script, the sample sheet and the reference need to be modified accordingly.
 
-The currently installed clair3 models can be found in your NanoCore_1 environment path (within your conda/miniconda path) e.g. "/path/to/miniconda3/envs/NanoCore_1/bin/models/" and should contain basic models like "ont" (for Nanopore data), "ilmn" (for Illumina data) and a few more. More models for clair3, that maybe fit better to your type of sequencing data, can be downloaded from ONTs GitHub Rerio repo (https://github.com/nanoporetech/rerio) and saved in the same path.
+The currently installed clair3 models can be found in your "NanoCore_1" environment path (within your conda/miniconda path) e.g. "/path/to/miniconda3/envs/NanoCore_1/bin/models/" and should contain basic models like "ont" (for Nanopore data), "ilmn" (for Illumina data) and a few more. More models for clair3, that maybe fit better to your type of sequencing data, can be downloaded from ONTs GitHub Rerio repo (https://github.com/nanoporetech/rerio) and saved in the same path.
 
 
 
