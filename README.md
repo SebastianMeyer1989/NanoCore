@@ -31,7 +31,7 @@ The programm was tested on the following Operating Systems:
 - CentOS Linux 6.2.0-26-generic x86_64
 - Ubuntu 22.04.3 LTS
 
-For NanoCore to run properly, we recommend to use squencing data between 500MB and 3GB file-size per sample. Smaller files could contain a to low amount of sequencing data to run without errors (as e.g. explained further down in "Known issues and how to solve them"). Bigger files may lead to a long run time and a termination of the script, should the available memory not suffice.
+For NanoCore to run properly, we recommend to use squencing data between 500MB and 3GB file-size per sample. Smaller files could contain a too low amount of sequencing data to run without errors (as e.g. explained further down in "Known issues and how to solve them"). A re-sequencing of these samples could be advisable. Bigger files may lead to a long run time and a termination of the script, should the available memory not suffice. In these cases a downsampling of the corresponding sequencing data is recommended.
 
 
 
