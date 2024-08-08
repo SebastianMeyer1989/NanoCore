@@ -20,7 +20,7 @@ The DOI for this software is https://doi.org/10.5281/zenodo.8424707.
 
 
 ### Overview of the NanoCore pipeline
-![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/NanoCore_workflow.png)
+![alt text](https://github.com/SebastianMeyer1989/NanoCore/blob/main/NanoCore_workflow.jpg)
 
 The NanoCore method (right), in comparison to a well-established method for the computation of cgMLST-based distances (SeqSphere+, left). NanoCore maps the provided sequencing data to the corresponding core genome, calls variants from those mappings, applies various filters to the results and produces different statistics, a distance matrix and a minimum-spanning-tree.
 
