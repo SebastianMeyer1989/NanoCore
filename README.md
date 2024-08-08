@@ -58,7 +58,7 @@ conda env create -f NanoCore_2.yml
 
 The environments will be activated automatically by NanoCore. The user does not need to activate them prior to the run.
 
-Of note: The.sml files do not necessarily contain the newest versions of the used programs, but the versions we used to build the NanoCore tool. The workflow may also work with the most recent versions of the used programs, but it is also possible that some output formats (e.g. of the mapping tool or variant-caller) will be modified, thus interrupting programs later in the pipeline, which expect their input to be in a certain format.
+Of note: The .yml files do not necessarily contain the newest versions of the used programs, but the versions we used to build the NanoCore tool. The workflow may also work with the most recent versions of the used programs, but it is also possible that some output formats (e.g. of the mapping tool or variant-caller) will be modified, thus interrupting programs later in the pipeline, which expect their input to be in a certain format.
 
 ## Running NanoCore
 The tool has no user-interface and is run from the terminal.
