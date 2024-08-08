@@ -100,7 +100,7 @@ It is possible, to add new samples to a finished NanoCore run. To achieve this, 
 
 ### Input explained
 
-- **perl NanoCore_v1.0.5.sh** = The NanoCore algorithm.  
+- **./NanoCore_v1.0.5.sh** = The NanoCore script that executes all other necessary scripts.  
 - **-s SampleSheet.txt** = A tab-separated file containing one line per sample with the isolate ID, the tag "Nanopore" or "Illummina" to define the used sequencing method, the desired clair 3 model and the paths to either the Nanopore sequencing data file or the Illumina sequencing data R1 and R2 files.  
 ##### Example:
 ```
