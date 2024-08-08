@@ -50,6 +50,7 @@ For NanoCore to run properly, we recommend to use squencing data between 500MB a
   - pheatmap (version 1.0.12)
 
 Conda, Perl and the Perl modules need to be provided by the user. R and all needed R packages are installed during the following installing process.
+
 After downloading all files from this repository, NanoCore can be installed using the provided .yml files and the following conda commands, which create the necessary conda environments for NanoCore:
 ```
 conda env create -f NanoCore_1.yml
@@ -73,11 +74,13 @@ To get help about the parameters NanoCore needs, simply run one of the following
 ```
 This will tell you, which input in which format is required for NanoCore to run
 
+
 To get the currently installed version of NanoCore, run one of the following commands:
 ```
 ./NanoCore_v1.0.5.sh -v
 ./NanoCore_v1.0.5.sh --version
 ```
+
 
 To run NanoCore the following command is needed:
 ```
@@ -121,7 +124,8 @@ sample404    Illumina  /path/to/NanoCore/bin/models/ilmn  /Illumina_Data/sample4
 
 (examplary for prefix `NanoCore_Run_1`):
 
-Of Primary interest for the user should be the allele table "NanoCore_Run_1_allele_table.txt", the minimum-spanning-tree "NanoCore_Run_1-mst.pdf" and the log file "", all saved to the folder the script was run in. that shows the pairwise distances calculated on a cgMLST-like metric and the minimum-spanning-tree "NanoCore_Run_1-mst.pdf" in the "Output_NanoCore_Run_1_Stats/" folder, that shows the tree with all samples of this run calculated from the allele table.
+Of Primary interest for the user should be the allele table "NanoCore_Run_1_allele_table.txt", the minimum-spanning-tree "NanoCore_Run_1-mst.pdf" and the log file "NanoCore_Run_1.log", all saved to the folder the script was run in.  
+These show the pairwise distances calculated on a cgMLST-like metric, the tree with all samples of this run calculated from the allele table and a list of the complete output of the NanoCore run.  
 Of secondary interest are probably the other pdf-files found in the "Output_NanoCore_Run_1_Stats/" folder, that show different statistics of the run as well as heatmaps of excluded genes.
 Nevertheless, for completeness here we list everything NanoCore produces:
 
@@ -222,7 +226,7 @@ The distance-matrix "Example_MRSA_hybrid_allele_table.txt" and minimum-spanning-
 
 
 ## Known issues and how to solve them
-In this paragraph we will explain potential issues you could encounter within your output data
+In this paragraph we will explain potential issues you could encounter within your output data.
 
 
 
