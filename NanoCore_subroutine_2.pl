@@ -29,8 +29,8 @@ system("cp Output_$prefix\_Stats/$prefix-mst.pdf $prefix-mst.pdf");										# c
 
 ### Write output files to log file and terminal
 print "\n\n> Summary of all produced output files written to the end of the log file:\t$prefix.log\n"; 		# Name log file in terminal
-print "> Allele based distance matrix of this run written to:\t\t\t$prefix\_allele_table.txt\n"; 			# Name distance matrix file in terminal
-print "> Minimum-spanning-tree of this run written to:\t\t\t\t$prefix-mst.pdf\n"; 							# Name MST file in terminal
+print "> Allele based distance matrix of this run written to:\t\t\t\t$prefix\_allele_table.txt\n"; 			# Name distance matrix file in terminal
+print "> Minimum-spanning-tree of this run written to:\t\t\t\t\t$prefix-mst.pdf\n"; 							# Name MST file in terminal
 
 print LOG "\n\n> Output written to:";
 print LOG "\n\tMain output files (run log, distance matrix, MST)";
