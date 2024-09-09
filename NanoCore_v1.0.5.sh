@@ -7,14 +7,14 @@ start_time=$(date +%s)	# save starting time
 ### generate --help and --verion text
 if [ "$1" == "-h" ] || [ "$1" == "--help" ];then
     echo -e "\n\nThis is the help section of NanoCore. The following lines provide explnaitions for the different command line paraameters:\n"
-    echo "-v/--version          \t\tPrints the current version number and exits."
+    echo -e "-v/--version          \t\tPrints the current version number and exits."
     echo -e "-h/--help          \t\tPrints this help section and exits.\n"
-    echo "-s [PATH/TO/FILE]     \t\tA tab-separated file containing one line per sample with the isolate ID, the tag 'Nanopore' or 'Illummina', the clair model and the paths to the sequencing data."
-    echo "-r [PATH/TO/FILE]     \t\tThe core genome reference file for a certain species."
-    echo "-p [PREFIX]           \t\tThe chosen prefix/name for the current NanoCore run."
-    echo "-t [THREADS]          \t\tThe number of threads used for components of the pipeline that support multithreading."
-    echo "-m [THRESHOLD]        \t\tThe minimum coverage threshold desired for the analysis (default = 20)."
-    echo "-b [PATH/TO/SAMTOOLS] \t\tThe samtools executable (default = samtools)."
+    echo -e "-s [PATH/TO/FILE]     \t\tA tab-separated file containing one line per sample with the isolate ID, the tag 'Nanopore' or 'Illummina', the clair model and the paths to the sequencing data."
+    echo -e "-r [PATH/TO/FILE]     \t\tThe core genome reference file for a certain species."
+    echo -e "-p [PREFIX]           \t\tThe chosen prefix/name for the current NanoCore run."
+    echo -e "-t [THREADS]          \t\tThe number of threads used for components of the pipeline that support multithreading."
+    echo -e "-m [THRESHOLD]        \t\tThe minimum coverage threshold desired for the analysis (default = 20)."
+    echo -e "-b [PATH/TO/SAMTOOLS] \t\tThe samtools executable (default = samtools)."
     echo -e "\nFor further explanation of the parameters or information about expected output files, please refer to the NanoCore GitHub Homepage (https://github.com/SebastianMeyer1989/NanoCore)\n\n."
 	exit 0
 fi

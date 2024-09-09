@@ -665,7 +665,7 @@ system("cat Output_$prefix\_Stats/$prefix.tmp2_excluded_mapQ   | uniq > Output_$
 system("cat Output_$prefix\_Stats/$prefix.tmp2_excluded_heterozyg   | uniq > Output_$prefix\_Stats/$prefix.heat_excluded_heterozyg") and die;				system("rm Output_$prefix\_Stats/$prefix.tmp2_excluded_heterozyg");			# 1
 system("rm isolate_list_$prefix.tmp");
 system("rm gene_list_$prefix.tmp");
-if(-e "clair.tmp"){system("rm clair3.tmp")};
+if(-e "clair3.tmp"){system("rm clair3.tmp")};
 
 close(AVECOVFTWO); 		# 2
 close(MAPQFTWO);		# 3
