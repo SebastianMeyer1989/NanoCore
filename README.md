@@ -15,7 +15,7 @@ To apply NanoCore, Nanopore data (or Nanopore or Illumina data) for either Sampl
 
 The publication accompanying this tool can be found at: [WIP]  
 The datasets analyzed during the project are available at the Sequence Read Archive under the BioProject ID PRJNA1012291.  
-The DOI for this software is https://doi.org/10.5281/zenodo.13269259.
+The DOI for this software is https://doi.org/10.5281/zenodo.13739529.
 
 
 
